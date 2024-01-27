@@ -1,5 +1,9 @@
 const { userSchema } = require("../schema/user");
-const {checkIfUserExists, createUser} = require("../middlewares/user");
+const {
+  checkIfUserExists,
+  createUser,
+  getUsers,
+} = require("../middlewares/user");
 let user = (module.exports = {});
 
 user.signUp = async (req, res) => {
@@ -32,7 +36,7 @@ user.signUp = async (req, res) => {
     city,
     address,
     monthRevenue,
-    image
+    image,
   });
   if (!error) {
     let result = createUser(body);
@@ -61,4 +65,17 @@ user.signUp = async (req, res) => {
       error,
     });
   }
+};
+
+user.getAll = async (req, res) => {
+  let data = getUsers();
+  data
+    .then((users) => {
+      res.json(users);
+    })
+    .catch((error) => {
+      res.status(400).json({
+        error,
+      });
+    });
 };

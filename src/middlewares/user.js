@@ -18,7 +18,13 @@ async function createUser(body) {
   return await user.save();
 }
 
+async function getUsers() {
+  let users = User.find();
+  return users
+}
+
 module.exports = {
   checkIfUserExists,
-  createUser
+  createUser,
+  getUsers
 }
