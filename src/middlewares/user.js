@@ -1,5 +1,6 @@
 const User = require("../db/models/user.model");
-const bcrypt = require("bcrypt");
+const {storage} = require("../firebase/config");
+
 async function checkIfUserExists(body) {
   try {
     const checkUser = await User.findOne({ email: body.email });
@@ -23,8 +24,23 @@ async function getUsers() {
   return users
 }
 
+async function uploadImageToStorage(file, remoteFilePath) {
+    // Upload image to Firebase Storage
+    await storage.upload(file?.buffer, {
+      destination: remoteFilePath,
+      metadata: {
+        contentType: file?.mimetype, // Adjust the content type based on your file type
+      },
+    });
+
+    // Get the download URL of the uploaded image
+    const downloadURL = `https://storage.googleapis.com/${storage.name}/${remoteFilePath}`;
+    return downloadURL;
+}
+
 module.exports = {
   checkIfUserExists,
   createUser,
-  getUsers
+  getUsers,
+  uploadImageToStorage
 }
