@@ -13,8 +13,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  id: {
-    type: Number,
+  idNumber: {
+    type: String,
     required: true
   },
   idType: {
