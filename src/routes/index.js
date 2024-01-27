@@ -10,5 +10,5 @@ router.get("/", (req, res) => {
 });
 
 // user
-
+router.post("/user", user.signUp)
 module.exports = router;
