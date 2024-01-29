@@ -1,5 +1,24 @@
 const mongoose = require('mongoose');
 
+const imageSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    required: true,
+  },
+  size: {
+    type: Number,
+    required: true,
+  },
+  data: {
+    type: Buffer,
+    required: true,
+  },
+});
+
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -38,7 +57,7 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   image: {
-    type: String,
+    type: imageSchema,
     required: true,
   }
 

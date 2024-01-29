@@ -12,7 +12,7 @@ app.use(routes);
 
 // * db connection
 connectToDatabase();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log('Api Restful Ok and executing on port', port);
