@@ -5,13 +5,14 @@ const routes = require("./src/routes/index");
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(routes);
 app.use(cors());
+app.use(routes);
+
 
 
 // * db connection
 connectToDatabase();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 app.listen(port, () => {
   console.log('Api Restful Ok and executing on port', port);
