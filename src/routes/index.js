@@ -10,5 +10,5 @@ router.get("/", (req, res) => {
 });
 
 // user
-
+router.get("/user/all", user.getAll).post("/user", user.signUp);
 module.exports = router;
